@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zipstatsguide.netlify.app/sitemap.xml

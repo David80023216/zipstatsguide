@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="google-site-verification" content="dfQy5fOhmYTDWYQ6zLio9t6jZ_o9Kt5jDqzXds2DgYk"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ZIP Code Statistics — Population, Income &amp; Housing for Every U.S. ZIP | ZipStatsGuide</title>
+<meta name="description" content="Free ZIP code statistics — population, income, housing values, cost of living, and demographics for 43,000+ U.S. ZIP codes. Instant search."/>
+<link rel="canonical" href="https://zipstatsguide.netlify.app/"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8618142757434912" crossorigin="anonymous"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
+body{background:#f8fafc;color:#1e293b}
+nav{background:#1e40af;color:white;padding:12px 20px;display:flex;align-items:center;gap:16px}
+nav a{color:white;text-decoration:none;font-weight:600}
+.logo{background:white;color:#1e40af;font-weight:900;font-size:13px;padding:4px 8px;border-radius:6px}
+.hero{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:white;padding:64px 20px;text-align:center}
+.hero h1{font-size:2.5rem;font-weight:900;margin-bottom:12px;line-height:1.2}
+.hero p{color:#bfdbfe;font-size:1.1rem;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+.search-box{max-width:480px;margin:0 auto;display:flex;gap:8px}
+.search-box input{flex:1;padding:14px 18px;border-radius:10px;border:0;font-size:1rem;outline:none}
+.search-box button{background:#f59e0b;color:#0f172a;font-weight:700;padding:14px 22px;border-radius:10px;border:0;cursor:pointer;font-size:1rem;white-space:nowrap}
+.search-box button:hover{background:#d97706}
+.stats-bar{background:white;border-bottom:1px solid #e2e8f0}
+.stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:20px}
+.stat-item{text-align:center;padding:12px}
+.stat-val{font-size:1.6rem;font-weight:900;color:#1e40af}
+.stat-lbl{font-size:11px;color:#64748b;margin-top:4px}
+.container{max-width:1000px;margin:0 auto;padding:40px 20px}
+h2{font-size:1.4rem;font-weight:800;margin-bottom:6px;color:#1e293b}
+.sub{color:#64748b;margin-bottom:20px;font-size:.9rem}
+.pop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:40px}
+.pop-zip{display:flex;flex-direction:column;background:white;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-decoration:none;color:#1e293b;transition:.15s}
+.pop-zip:hover{border-color:#2563eb;box-shadow:0 4px 12px rgba(37,99,235,.1)}
+.pop-zip strong{font-size:1.2rem;color:#1e40af;font-weight:900}
+.pop-zip span{font-size:.78rem;color:#64748b;margin-top:2px}
+.state-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:40px}
+.state-link{display:flex;justify-content:space-between;align-items:center;background:white;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;text-decoration:none;color:#1e293b;font-size:.85rem;transition:.15s}
+.state-link:hover{border-color:#2563eb;color:#2563eb}
+.cnt{background:#dbeafe;color:#1e40af;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.feature{background:white;border-radius:12px;padding:20px;border:1px solid #e2e8f0}
+.feature .icon{font-size:2rem;margin-bottom:10px}
+.feature h3{font-weight:700;margin-bottom:6px;font-size:.95rem}
+.feature p{color:#64748b;font-size:.85rem;line-height:1.6}
+footer{background:#0f172a;color:#94a3b8;padding:32px 20px;text-align:center;font-size:.85rem}
+footer a{color:#94a3b8;text-decoration:none}footer a:hover{color:white}
+@media(max-width:700px){
+  .hero h1{font-size:1.8rem}.stats-grid{grid-template-columns:repeat(2,1fr)}
+  .pop-grid{grid-template-columns:repeat(2,1fr)}.state-grid{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav><span class="logo">ZIP</span><a href="/">ZipStatsGuide</a></nav>
+<div class="hero">
+  <h1>ZIP Code Statistics &amp;<br/>Demographics</h1>
+  <p>Population, income, housing values, cost of living and more — for every U.S. ZIP code. Free.</p>
+  <div class="search-box">
+    <input type="text" id="zip-input" placeholder="Enter a ZIP code (e.g. 90210)..." maxlength="5" onkeydown="if(event.key==='Enter')goZip()"/>
+    <button onclick="goZip()">Search →</button>
+  </div>
+</div>
+<div class="stats-bar"><div class="stats-grid">
+  <div class="stat-item"><div class="stat-val">43,000+</div><div class="stat-lbl">U.S. ZIP Codes</div></div>
+  <div class="stat-item"><div class="stat-val">51</div><div class="stat-lbl">States + D.C.</div></div>
+  <div class="stat-item"><div class="stat-val">12+</div><div class="stat-lbl">Data Points Per ZIP</div></div>
+  <div class="stat-item"><div class="stat-val">Free</div><div class="stat-lbl">Always Free</div></div>
+</div></div>
+<div class="container">
+  <h2>High-Income ZIP Codes</h2>
+  <p class="sub">Frequently searched ZIP codes with notable demographics.</p>
+  <div class="pop-grid"><a href="/zip/96701.html" class="pop-zip"><strong>96701</strong><span>Aiea, HI</span></a><a href="/zip/96703.html" class="pop-zip"><strong>96703</strong><span>Anahola, HI</span></a><a href="/zip/96704.html" class="pop-zip"><strong>96704</strong><span>Captain Cook, HI</span></a><a href="/zip/96705.html" class="pop-zip"><strong>96705</strong><span>Eleele, HI</span></a><a href="/zip/96706.html" class="pop-zip"><strong>96706</strong><span>Ewa Beach, HI</span></a><a href="/zip/96707.html" class="pop-zip"><strong>96707</strong><span>Kapolei, HI</span></a><a href="/zip/96708.html" class="pop-zip"><strong>96708</strong><span>Haiku, HI</span></a><a href="/zip/96709.html" class="pop-zip"><strong>96709</strong><span>Kapolei, HI</span></a><a href="/zip/96710.html" class="pop-zip"><strong>96710</strong><span>Hakalau, HI</span></a><a href="/zip/96712.html" class="pop-zip"><strong>96712</strong><span>Haleiwa, HI</span></a><a href="/zip/96713.html" class="pop-zip"><strong>96713</strong><span>Hana, HI</span></a><a href="/zip/96714.html" class="pop-zip"><strong>96714</strong><span>Hanalei, HI</span></a></div>
+
+  <h2>What's Included</h2>
+  <p class="sub">Every ZIP code page includes comprehensive demographic data.</p>
+  <div class="features">
+    <div class="feature"><div class="icon">👥</div><h3>Population &amp; Demographics</h3><p>Total population, density, median age, and household counts from Census data.</p></div>
+    <div class="feature"><div class="icon">💰</div><h3>Income Statistics</h3><p>Median household income, per capita income, poverty rate, and unemployment rate.</p></div>
+    <div class="feature"><div class="icon">🏠</div><h3>Housing Data</h3><p>Median home value, average monthly rent, and homeownership rate.</p></div>
+    <div class="feature"><div class="icon">💸</div><h3>Cost of Living</h3><p>Cost of living index compared to the U.S. national average of 100.</p></div>
+    <div class="feature"><div class="icon">📍</div><h3>Location Info</h3><p>County, state, coordinates, nearby cities and surrounding ZIP codes.</p></div>
+    <div class="feature"><div class="icon">📊</div><h3>Economic Indicators</h3><p>Local economic data and employment statistics for informed decisions.</p></div>
+  </div>
+
+  <h2>Browse ZIP Codes by State</h2>
+  <p class="sub">Click a state to see all ZIP codes with full demographics.</p>
+  <div class="state-grid"><a href="/state/AK.html" class="state-link"><span>Alaska</span><span class="cnt">275</span></a><a href="/state/AL.html" class="state-link"><span>Alabama</span><span class="cnt">849</span></a><a href="/state/AR.html" class="state-link"><span>Arkansas</span><span class="cnt">722</span></a><a href="/state/AZ.html" class="state-link"><span>Arizona</span><span class="cnt">557</span></a><a href="/state/CA.html" class="state-link"><span>California</span><span class="cnt">2705</span></a><a href="/state/CO.html" class="state-link"><span>Colorado</span><span class="cnt">673</span></a><a href="/state/CT.html" class="state-link"><span>Connecticut</span><span class="cnt">445</span></a><a href="/state/DC.html" class="state-link"><span>Washington D.C.</span><span class="cnt">296</span></a><a href="/state/DE.html" class="state-link"><span>Delaware</span><span class="cnt">98</span></a><a href="/state/FL.html" class="state-link"><span>Florida</span><span class="cnt">1491</span></a><a href="/state/GA.html" class="state-link"><span>Georgia</span><span class="cnt">1011</span></a><a href="/state/HI.html" class="state-link"><span>Hawaii</span><span class="cnt">143</span></a><a href="/state/IA.html" class="state-link"><span>Iowa</span><span class="cnt">1078</span></a><a href="/state/ID.html" class="state-link"><span>Idaho</span><span class="cnt">333</span></a><a href="/state/IL.html" class="state-link"><span>Illinois</span><span class="cnt">1616</span></a><a href="/state/IN.html" class="state-link"><span>Indiana</span><span class="cnt">995</span></a><a href="/state/KS.html" class="state-link"><span>Kansas</span><span class="cnt">773</span></a><a href="/state/KY.html" class="state-link"><span>Kentucky</span><span class="cnt">1018</span></a><a href="/state/LA.html" class="state-link"><span>Louisiana</span><span class="cnt">739</span></a><a href="/state/MA.html" class="state-link"><span>Massachusetts</span><span class="cnt">716</span></a><a href="/state/MD.html" class="state-link"><span>Maryland</span><span class="cnt">627</span></a><a href="/state/ME.html" class="state-link"><span>Maine</span><span class="cnt">505</span></a><a href="/state/MI.html" class="state-link"><span>Michigan</span><span class="cnt">1176</span></a><a href="/state/MN.html" class="state-link"><span>Minnesota</span><span class="cnt">1038</span></a><a href="/state/MO.html" class="state-link"><span>Missouri</span><span class="cnt">1195</span></a><a href="/state/MS.html" class="state-link"><span>Mississippi</span><span class="cnt">538</span></a><a href="/state/MT.html" class="state-link"><span>Montana</span><span class="cnt">411</span></a><a href="/state/NC.html" class="state-link"><span>North Carolina</span><span class="cnt">1099</span></a><a href="/state/ND.html" class="state-link"><span>North Dakota</span><span class="cnt">418</span></a><a href="/state/NE.html" class="state-link"><span>Nebraska</span><span class="cnt">629</span></a><a href="/state/NH.html" class="state-link"><span>New Hampshire</span><span class="cnt">284</span></a><a href="/state/NJ.html" class="state-link"><span>New Jersey</span><span class="cnt">739</span></a><a href="/state/NM.html" class="state-link"><span>New Mexico</span><span class="cnt">431</span></a><a href="/state/NV.html" class="state-link"><span>Nevada</span><span class="cnt">253</span></a><a href="/state/NY.html" class="state-link"><span>New York</span><span class="cnt">2234</span></a><a href="/state/OH.html" class="state-link"><span>Ohio</span><span class="cnt">1475</span></a><a href="/state/OK.html" class="state-link"><span>Oklahoma</span><span class="cnt">783</span></a><a href="/state/OR.html" class="state-link"><span>Oregon</span><span class="cnt">490</span></a><a href="/state/PA.html" class="state-link"><span>Pennsylvania</span><span class="cnt">2237</span></a><a href="/state/RI.html" class="state-link"><span>Rhode Island</span><span class="cnt">91</span></a><a href="/state/SC.html" class="state-link"><span>South Carolina</span><span class="cnt">541</span></a><a href="/state/SD.html" class="state-link"><span>South Dakota</span><span class="cnt">416</span></a><a href="/state/TN.html" class="state-link"><span>Tennessee</span><span class="cnt">808</span></a><a href="/state/TX.html" class="state-link"><span>Texas</span><span class="cnt">2706</span></a><a href="/state/UT.html" class="state-link"><span>Utah</span><span class="cnt">356</span></a><a href="/state/VA.html" class="state-link"><span>Virginia</span><span class="cnt">1263</span></a><a href="/state/VT.html" class="state-link"><span>Vermont</span><span class="cnt">309</span></a><a href="/state/WA.html" class="state-link"><span>Washington</span><span class="cnt">733</span></a><a href="/state/WI.html" class="state-link"><span>Wisconsin</span><span class="cnt">917</span></a><a href="/state/WV.html" class="state-link"><span>West Virginia</span><span class="cnt">933</span></a><a href="/state/WY.html" class="state-link"><span>Wyoming</span><span class="cnt">198</span></a></div>
+</div>
+<footer>
+  <p><a href="/">ZipStatsGuide</a> · <a href="/sitemap.xml">Sitemap</a> · <a href="/robots.txt">Robots.txt</a></p>
+  <p style="margin-top:8px">© 2026 ZipStatsGuide · Data from U.S. Census Bureau · Not financial or legal advice</p>
+</footer>
+<script>
+function goZip(){
+  var v=document.getElementById('zip-input').value.trim();
+  if(/^\d{5}$/.test(v)) window.location.href='/zip/'+v+'.html';
+  else alert('Please enter a valid 5-digit ZIP code.');
+}
+</script>
+</body></html>
