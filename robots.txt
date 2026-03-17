@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zipstatguide.com/sitemap.xml
