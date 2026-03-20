@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-site-verification" content="Igc0ASYgacWgq6xn6KejRvdhS3kcJyEqnm6tak00sNs" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iowa ZIP Code Statistics — Demographics, Income & Housing Data</title>
+  <link rel="canonical" href="https://zipstatguide.com/state/iowa.html" />
+  <meta name="description" content="Explore ZIP code statistics for Iowa (IA). Browse population, median income, home values, and demographics for ZIP codes across The Hawkeye State." />
+  <meta property="og:title" content="Iowa ZIP Code Statistics — Demographics, Income & Housing Data" />
+  <meta property="og:description" content="Explore ZIP code statistics for Iowa (IA). Browse population, median income, home values, and demographics for ZIP codes across The Hawkeye State." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zipstatguide.com/state/iowa.html" />
+  <meta property="og:site_name" content="ZIP Stats Guide" />
+  <meta name="robots" content="index, follow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    .hero-gradient { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #0ea5e9 100%); }
+    .card-hover { transition: all 0.2s ease; }
+    .card-hover:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .fade-in { animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .stat-card { background:white; border-radius:12px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border:1px solid #e2e8f0; }
+    .search-input { border:2px solid #e2e8f0; border-radius:12px; padding:14px 20px; font-size:18px; width:100%; outline:none; transition:border-color 0.2s; }
+    .search-input:focus { border-color:#2563eb; box-shadow:0 0 0 4px rgba(37,99,235,0.1); }
+    .btn-primary { background:#2563eb; color:white; padding:14px 32px; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; border:none; transition:background 0.2s; }
+    .btn-primary:hover { background:#1d4ed8; }
+    .ad-placeholder { background:#f8fafc; border:2px dashed #cbd5e1; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-size:13px; min-height:90px; }
+    .tag { display:inline-block; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:600; }
+    .bar-fill { height:100%; border-radius:4px; }
+    table th { background:#f1f5f9; font-weight:600; font-size:13px; color:#475569; text-align:left; }
+    table td, table th { padding:10px 14px; border-bottom:1px solid #e2e8f0; font-size:13px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 no-underline">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#2563eb">
+        <span class="text-white font-bold text-sm">Z</span>
+      </div>
+      <span class="font-bold text-lg text-gray-900">ZIP Stats Guide</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+      <a href="/" class="hover:text-blue-600 no-underline">ZIP Lookup</a>
+      <a href="/#states" class="hover:text-blue-600 no-underline">Browse States</a>
+      <a href="/#faq" class="hover:text-blue-600 no-underline">FAQ</a>
+    </div>
+    <a href="/" class="bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-blue-700 no-underline" style="text-decoration:none">Look Up a ZIP &rarr;</a>
+  </div>
+</nav>
+
+<!-- STATE HERO -->
+<div class="hero-gradient text-white py-12 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="tag bg-white bg-opacity-20 text-white mb-3">📍 Midwest Region</div>
+    <h1 class="text-4xl font-extrabold mb-2">Iowa ZIP Code Statistics</h1>
+    <p class="text-blue-100 text-lg mb-6">The Hawkeye State · Capital: Des Moines · 10 ZIP codes indexed</p>
+    
+    <div class="bg-white rounded-2xl p-4 max-w-lg mx-auto shadow-2xl" id="hero-search">
+      <div class="flex gap-3">
+        <input type="text" id="zip-input" class="search-input text-gray-800"
+          placeholder="Search any ZIP code in Iowa…" maxlength="5"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+          onkeydown="if(event.key==='Enter')goToZip()" />
+        <button class="btn-primary whitespace-nowrap" onclick="goToZip()">Look Up</button>
+      </div>
+      <p id="zip-error" class="text-red-500 text-sm mt-2 hidden">Please enter a valid 5-digit ZIP code.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AD TOP -->
+<div class="max-w-4xl mx-auto px-4 py-4"><div class="ad-placeholder">Advertisement</div></div>
+
+<!-- STATE SUMMARY CARDS -->
+<div class="max-w-4xl mx-auto px-4 py-4">
+  <div class="grid grid-cols-3 gap-4 mb-6">
+    <div class="stat-card text-center">
+      <div class="text-2xl font-extrabold text-blue-600">$60,413</div>
+      <div class="text-xs text-gray-500 mt-1 uppercase tracking-wide">Avg Median Income</div>
+    </div>
+    <div class="stat-card text-center">
+      <div class="text-2xl font-extrabold text-purple-600">$333,120</div>
+      <div class="text-xs text-gray-500 mt-1 uppercase tracking-wide">Avg Home Value</div>
+    </div>
+    <div class="stat-card text-center">
+      <div class="text-2xl font-extrabold text-green-600">35,598</div>
+      <div class="text-xs text-gray-500 mt-1 uppercase tracking-wide">Avg ZIP Population</div>
+    </div>
+  </div>
+
+  <!-- STATE INTRO -->
+  <div class="stat-card mb-6">
+    <h2 class="text-xl font-bold text-gray-900 mb-3">About Iowa ZIP Codes</h2>
+    <p class="text-gray-600 leading-relaxed">
+      Iowa — known as The Hawkeye State — is a Midwest-region state with its capital in Des Moines.
+      This page covers 10 ZIP codes across Iowa, spanning cities, suburbs, and rural communities.
+      The average median household income across these ZIP codes is $60,413,
+      with a median home value of $333,120.
+      Data is sourced from the US Census Bureau's American Community Survey (ACS) 5-Year Estimates.
+      Use the table below to explore individual ZIP code profiles with detailed population, income, housing, and demographic statistics.
+    </p>
+  </div>
+
+  <!-- ZIP TABLE -->
+  <div class="stat-card mb-6">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">ZIP Codes in Iowa</h2>
+    <div class="grid grid-cols-4 gap-2 px-4 py-2 bg-gray-100 rounded-t-lg text-xs font-bold text-gray-500 uppercase tracking-wide">
+      <span>ZIP Code</span><span>City</span><span>Median Income</span><span>Population</span>
+    </div>
+    <div class="border border-gray-200 rounded-b-lg overflow-hidden">
+    <a href="/zip/50309.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">50309</span>
+      <span class="text-sm">Des Moines</span>
+      <span class="text-sm text-green-700">$62,814</span>
+      <span class="text-sm text-gray-500">6,976</span>
+    </a>
+    <a href="/zip/50401.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">50401</span>
+      <span class="text-sm">Mason City</span>
+      <span class="text-sm text-green-700">$64,639</span>
+      <span class="text-sm text-gray-500">43,257</span>
+    </a>
+    <a href="/zip/51101.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">51101</span>
+      <span class="text-sm">Sioux City</span>
+      <span class="text-sm text-green-700">$54,466</span>
+      <span class="text-sm text-gray-500">55,284</span>
+    </a>
+    <a href="/zip/51501.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">51501</span>
+      <span class="text-sm">Council Bluffs</span>
+      <span class="text-sm text-green-700">$65,093</span>
+      <span class="text-sm text-gray-500">14,159</span>
+    </a>
+    <a href="/zip/52001.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">52001</span>
+      <span class="text-sm">Dubuque</span>
+      <span class="text-sm text-green-700">$62,762</span>
+      <span class="text-sm text-gray-500">25,516</span>
+    </a>
+    <a href="/zip/52240.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">52240</span>
+      <span class="text-sm">Iowa City</span>
+      <span class="text-sm text-green-700">$60,508</span>
+      <span class="text-sm text-gray-500">37,422</span>
+    </a>
+    <a href="/zip/52401.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">52401</span>
+      <span class="text-sm">Cedar Rapids</span>
+      <span class="text-sm text-green-700">$58,641</span>
+      <span class="text-sm text-gray-500">56,251</span>
+    </a>
+    <a href="/zip/52501.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">52501</span>
+      <span class="text-sm">Ottumwa</span>
+      <span class="text-sm text-green-700">$64,527</span>
+      <span class="text-sm text-gray-500">51,049</span>
+    </a>
+    <a href="/zip/52601.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">52601</span>
+      <span class="text-sm">Burlington</span>
+      <span class="text-sm text-green-700">$46,341</span>
+      <span class="text-sm text-gray-500">48,127</span>
+    </a>
+    <a href="/zip/52801.html" class="grid grid-cols-4 gap-2 px-4 py-3 hover:bg-blue-50 border-b border-gray-100 no-underline text-gray-800" style="text-decoration:none">
+      <span class="font-bold text-blue-600">52801</span>
+      <span class="text-sm">Davenport</span>
+      <span class="text-sm text-green-700">$64,340</span>
+      <span class="text-sm text-gray-500">17,942</span>
+    </a></div>
+  </div>
+</div>
+
+<!-- AD MID -->
+<div class="max-w-4xl mx-auto px-4 pb-4"><div class="ad-placeholder">Advertisement</div></div>
+
+<!-- OTHER STATES -->
+<div class="max-w-4xl mx-auto px-4 pb-8">
+  <h3 class="text-lg font-bold text-gray-800 mb-3">Browse Other States</h3>
+  <div class="flex flex-wrap gap-2"><a href="/state/alabama.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Alabama</a> <a href="/state/alaska.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Alaska</a> <a href="/state/arizona.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Arizona</a> <a href="/state/arkansas.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Arkansas</a> <a href="/state/california.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">California</a> <a href="/state/colorado.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Colorado</a> <a href="/state/connecticut.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Connecticut</a> <a href="/state/delaware.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Delaware</a> <a href="/state/florida.html" class="bg-gray-100 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded-lg no-underline text-gray-700" style="text-decoration:none">Florida</a></div>
+  <div class="mt-4">
+    <a href="/" class="text-blue-600 hover:underline text-sm font-medium">← Back to ZIP Stats Guide Homepage</a>
+  </div>
+</div>
+
+<!-- AD BOTTOM -->
+<div class="max-w-4xl mx-auto px-4 pb-8"><div class="ad-placeholder">Advertisement</div></div>
+
+
+<footer class="bg-gray-900 text-gray-400 py-8 px-4">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <div>
+      <span class="text-white font-bold">ZIP Stats Guide</span>
+      <span class="ml-2 text-sm">— Free US ZIP Code Statistics</span>
+    </div>
+    <div class="text-sm text-center">Data sourced from US Census Bureau &amp; American Community Survey. For informational use only.</div>
+    <div class="text-sm">&copy; 2026 ZIP Stats Guide</div>
+  </div>
+</footer>
+
+<script>
+function goToZip() {
+  var v = document.getElementById('zip-input').value.trim();
+  var err = document.getElementById('zip-error');
+  if (!/^\d{5}$/.test(v)) { if(err) err.classList.remove('hidden'); return; }
+  if(err) err.classList.add('hidden');
+  window.location.href = '/zip/' + v + '.html';
+}
+</script>
+</body>
+</html>
