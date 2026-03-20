@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-site-verification" content="Igc0ASYgacWgq6xn6KejRvdhS3kcJyEqnm6tak00sNs" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZIP Stats Guide — Free US ZIP Code Data & Statistics</title>
+  <link rel="canonical" href="https://zipstatguide.com/" />
+  <meta name="description" content="Free ZIP code lookup tool — explore population, income, housing, demographics, and more for any US ZIP code. Fast, accurate, and completely free." />
+  <meta property="og:title" content="ZIP Stats Guide — Free US ZIP Code Data & Statistics" />
+  <meta property="og:description" content="Free ZIP code lookup tool — explore population, income, housing, demographics, and more for any US ZIP code. Fast, accurate, and completely free." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zipstatguide.com/" />
+  <meta property="og:site_name" content="ZIP Stats Guide" />
+  <meta name="robots" content="index, follow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    .hero-gradient { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #0ea5e9 100%); }
+    .card-hover { transition: all 0.2s ease; }
+    .card-hover:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .fade-in { animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .stat-card { background:white; border-radius:12px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.07); border:1px solid #e2e8f0; }
+    .search-input { border:2px solid #e2e8f0; border-radius:12px; padding:14px 20px; font-size:18px; width:100%; outline:none; transition:border-color 0.2s; }
+    .search-input:focus { border-color:#2563eb; box-shadow:0 0 0 4px rgba(37,99,235,0.1); }
+    .btn-primary { background:#2563eb; color:white; padding:14px 32px; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; border:none; transition:background 0.2s; }
+    .btn-primary:hover { background:#1d4ed8; }
+    .ad-placeholder { background:#f8fafc; border:2px dashed #cbd5e1; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-size:13px; min-height:90px; }
+    .tag { display:inline-block; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:600; }
+    .bar-fill { height:100%; border-radius:4px; }
+    table th { background:#f1f5f9; font-weight:600; font-size:13px; color:#475569; text-align:left; }
+    table td, table th { padding:10px 14px; border-bottom:1px solid #e2e8f0; font-size:13px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 no-underline">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#2563eb">
+        <span class="text-white font-bold text-sm">Z</span>
+      </div>
+      <span class="font-bold text-lg text-gray-900">ZIP Stats Guide</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+      <a href="/" class="hover:text-blue-600 no-underline">ZIP Lookup</a>
+      <a href="/#states" class="hover:text-blue-600 no-underline">Browse States</a>
+      <a href="/#faq" class="hover:text-blue-600 no-underline">FAQ</a>
+    </div>
+    <a href="/" class="bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-blue-700 no-underline" style="text-decoration:none">Look Up a ZIP &rarr;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-gradient text-white py-16 px-4">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="tag bg-white bg-opacity-20 text-white mb-4">📍 Free US ZIP Code Database — Updated 2026</div>
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+      Instant ZIP Code Stats<br/>for Any US Location
+    </h1>
+    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+      Population, median income, housing costs, age demographics, and more — for all 42,000+ US ZIP codes. Free, fast, no signup.
+    </p>
+    
+    <div class="bg-white rounded-2xl p-4 max-w-lg mx-auto shadow-2xl" id="hero-search">
+      <div class="flex gap-3">
+        <input type="text" id="zip-input" class="search-input text-gray-800"
+          placeholder="Enter any US ZIP code (e.g. 90210)" maxlength="5"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+          onkeydown="if(event.key==='Enter')goToZip()" />
+        <button class="btn-primary whitespace-nowrap" onclick="goToZip()">Look Up</button>
+      </div>
+      <p id="zip-error" class="text-red-500 text-sm mt-2 hidden">Please enter a valid 5-digit ZIP code.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AD TOP -->
+<div class="max-w-6xl mx-auto px-4 py-4"><div class="ad-placeholder">Advertisement</div></div>
+
+<!-- FEATURED ZIP STAT CARDS -->
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <h2 class="text-2xl font-bold text-gray-900 mb-2">📊 Featured ZIP Code Profiles</h2>
+  <p class="text-gray-500 mb-6">Detailed demographics for ZIP codes across the United States</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <a href="/zip/35203.html" class="stat-card card-hover block no-underline" style="text-decoration:none">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+          <span class="text-blue-600 font-bold text-sm">35203</span>
+        </div>
+        <div>
+          <div class="font-bold text-gray-900">Birmingham, AL</div>
+          <div class="text-xs text-gray-500">Jefferson County</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <div class="bg-blue-50 rounded-lg p-2"><div class="text-sm font-bold text-blue-700">14,354</div><div class="text-xs text-gray-500">Pop.</div></div>
+        <div class="bg-green-50 rounded-lg p-2"><div class="text-sm font-bold text-green-700">$48,016</div><div class="text-xs text-gray-500">Income</div></div>
+        <div class="bg-purple-50 rounded-lg p-2"><div class="text-sm font-bold text-purple-700">$355,318</div><div class="text-xs text-gray-500">Home</div></div>
+      </div>
+    </a>
+    <a href="/zip/35401.html" class="stat-card card-hover block no-underline" style="text-decoration:none">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+          <span class="text-blue-600 font-bold text-sm">35401</span>
+        </div>
+        <div>
+          <div class="font-bold text-gray-900">Tuscaloosa, AL</div>
+          <div class="text-xs text-gray-500">Tuscaloosa County</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <div class="bg-blue-50 rounded-lg p-2"><div class="text-sm font-bold text-blue-700">26,223</div><div class="text-xs text-gray-500">Pop.</div></div>
+        <div class="bg-green-50 rounded-lg p-2"><div class="text-sm font-bold text-green-700">$32,181</div><div class="text-xs text-gray-500">Income</div></div>
+        <div class="bg-purple-50 rounded-lg p-2"><div class="text-sm font-bold text-purple-700">$189,867</div><div class="text-xs text-gray-500">Home</div></div>
+      </div>
+    </a>
+    <a href="/zip/36104.html" class="stat-card card-hover block no-underline" style="text-decoration:none">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+          <span class="text-blue-600 font-bold text-sm">36104</span>
+        </div>
+        <div>
+          <div class="font-bold text-gray-900">Montgomery, AL</div>
+          <div class="text-xs text-gray-500">Montgomery County</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <div class="bg-blue-50 rounded-lg p-2"><div class="text-sm font-bold text-blue-700">56,156</div><div class="text-xs text-gray-500">Pop.</div></div>
+        <div class="bg-green-50 rounded-lg p-2"><div class="text-sm font-bold text-green-700">$33,482</div><div class="text-xs text-gray-500">Income</div></div>
+        <div class="bg-purple-50 rounded-lg p-2"><div class="text-sm font-bold text-purple-700">$120,535</div><div class="text-xs text-gray-500">Home</div></div>
+      </div>
+    </a>
+    <a href="/zip/36602.html" class="stat-card card-hover block no-underline" style="text-decoration:none">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+          <span class="text-blue-600 font-bold text-sm">36602</span>
+        </div>
+        <div>
+          <div class="font-bold text-gray-900">Mobile, AL</div>
+          <div class="text-xs text-gray-500">Mobile County</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <div class="bg-blue-50 rounded-lg p-2"><div class="text-sm font-bold text-blue-700">31,669</div><div class="text-xs text-gray-500">Pop.</div></div>
+        <div class="bg-green-50 rounded-lg p-2"><div class="text-sm font-bold text-green-700">$58,843</div><div class="text-xs text-gray-500">Income</div></div>
+        <div class="bg-purple-50 rounded-lg p-2"><div class="text-sm font-bold text-purple-700">$288,330</div><div class="text-xs text-gray-500">Home</div></div>
+      </div>
+    </a>
+    <a href="/zip/35801.html" class="stat-card card-hover block no-underline" style="text-decoration:none">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+          <span class="text-blue-600 font-bold text-sm">35801</span>
+        </div>
+        <div>
+          <div class="font-bold text-gray-900">Huntsville, AL</div>
+          <div class="text-xs text-gray-500">Madison County</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <div class="bg-blue-50 rounded-lg p-2"><div class="text-sm font-bold text-blue-700">21,196</div><div class="text-xs text-gray-500">Pop.</div></div>
+        <div class="bg-green-50 rounded-lg p-2"><div class="text-sm font-bold text-green-700">$45,498</div><div class="text-xs text-gray-500">Income</div></div>
+        <div class="bg-purple-50 rounded-lg p-2"><div class="text-sm font-bold text-purple-700">$272,988</div><div class="text-xs text-gray-500">Home</div></div>
+      </div>
+    </a>
+    <a href="/zip/36201.html" class="stat-card card-hover block no-underline" style="text-decoration:none">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+          <span class="text-blue-600 font-bold text-sm">36201</span>
+        </div>
+        <div>
+          <div class="font-bold text-gray-900">Anniston, AL</div>
+          <div class="text-xs text-gray-500">Calhoun County</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <div class="bg-blue-50 rounded-lg p-2"><div class="text-sm font-bold text-blue-700">22,379</div><div class="text-xs text-gray-500">Pop.</div></div>
+        <div class="bg-green-50 rounded-lg p-2"><div class="text-sm font-bold text-green-700">$52,305</div><div class="text-xs text-gray-500">Income</div></div>
+        <div class="bg-purple-50 rounded-lg p-2"><div class="text-sm font-bold text-purple-700">$371,365</div><div class="text-xs text-gray-500">Home</div></div>
+      </div>
+    </a></div>
+</div>
+
+<!-- POPULAR ZIPS -->
+<div class="bg-white py-8 px-4">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">🔥 Popular ZIP Code Lookups</h2>
+    <p class="text-gray-500 mb-6">Explore some of the most searched ZIP codes in the US</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+    <a href="/zip/10001.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">10001</div>
+      <div class="text-xs text-gray-500 mt-1">New York, NY</div>
+    </a>
+    <a href="/zip/90210.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">90210</div>
+      <div class="text-xs text-gray-500 mt-1">Beverly Hills, CA</div>
+    </a>
+    <a href="/zip/60601.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">60601</div>
+      <div class="text-xs text-gray-500 mt-1">Chicago, IL</div>
+    </a>
+    <a href="/zip/98101.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">98101</div>
+      <div class="text-xs text-gray-500 mt-1">Seattle, WA</div>
+    </a>
+    <a href="/zip/94102.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">94102</div>
+      <div class="text-xs text-gray-500 mt-1">San Francisco, CA</div>
+    </a>
+    <a href="/zip/75201.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">75201</div>
+      <div class="text-xs text-gray-500 mt-1">Dallas, TX</div>
+    </a>
+    <a href="/zip/33101.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">33101</div>
+      <div class="text-xs text-gray-500 mt-1">Miami, FL</div>
+    </a>
+    <a href="/zip/80202.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">80202</div>
+      <div class="text-xs text-gray-500 mt-1">Denver, CO</div>
+    </a>
+    <a href="/zip/77002.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">77002</div>
+      <div class="text-xs text-gray-500 mt-1">Houston, TX</div>
+    </a>
+    <a href="/zip/85004.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">85004</div>
+      <div class="text-xs text-gray-500 mt-1">Phoenix, AZ</div>
+    </a>
+    <a href="/zip/30303.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">30303</div>
+      <div class="text-xs text-gray-500 mt-1">Atlanta, GA</div>
+    </a>
+    <a href="/zip/19103.html" class="bg-white border border-gray-200 rounded-xl p-4 text-center card-hover shadow-sm no-underline block" style="text-decoration:none">
+      <div class="text-xl font-extrabold text-blue-600">19103</div>
+      <div class="text-xs text-gray-500 mt-1">Philadelphia, PA</div>
+    </a></div>
+  </div>
+</div>
+
+<!-- STATES SECTION -->
+<div class="max-w-6xl mx-auto px-4 py-10" id="states">
+  <h2 class="text-2xl font-bold text-gray-900 mb-2">🗺️ Browse ZIP Codes by State</h2>
+  <p class="text-gray-500 mb-6">Select a state to explore ZIP code demographics and statistics</p>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+    <a href="/state/alabama.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Alabama
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/alaska.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Alaska
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/arizona.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Arizona
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/arkansas.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Arkansas
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/california.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      California
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/colorado.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Colorado
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/connecticut.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Connecticut
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/delaware.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Delaware
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/florida.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Florida
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/georgia.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Georgia
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/hawaii.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Hawaii
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/idaho.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Idaho
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/illinois.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Illinois
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/indiana.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Indiana
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/iowa.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Iowa
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/kansas.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Kansas
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/kentucky.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Kentucky
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/louisiana.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Louisiana
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/maine.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Maine
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/maryland.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Maryland
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/massachusetts.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Massachusetts
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/michigan.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Michigan
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/minnesota.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Minnesota
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/mississippi.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Mississippi
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/missouri.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Missouri
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/montana.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Montana
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/nebraska.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Nebraska
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/nevada.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Nevada
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/new-hampshire.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      New Hampshire
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/new-jersey.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      New Jersey
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/new-mexico.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      New Mexico
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/new-york.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      New York
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/north-carolina.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      North Carolina
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/north-dakota.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      North Dakota
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/ohio.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Ohio
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/oklahoma.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Oklahoma
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/oregon.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Oregon
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/pennsylvania.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Pennsylvania
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/rhode-island.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Rhode Island
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/south-carolina.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      South Carolina
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/south-dakota.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      South Dakota
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/tennessee.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Tennessee
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/texas.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Texas
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/utah.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Utah
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/vermont.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Vermont
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/virginia.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Virginia
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/washington.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Washington
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/west-virginia.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      West Virginia
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/wisconsin.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Wisconsin
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a>
+    <a href="/state/wyoming.html"
+       class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 card-hover text-center no-underline"
+       style="text-decoration:none">
+      Wyoming
+      <span class="block text-xs text-gray-400 font-normal">10 ZIPs</span>
+    </a></div>
+</div>
+
+<!-- AD MID -->
+<div class="max-w-6xl mx-auto px-4 pb-6"><div class="ad-placeholder">Advertisement</div></div>
+
+<!-- ABOUT -->
+<div class="bg-white py-12 px-4" id="about">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">About ZIP Stats Guide</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="text-center p-6 bg-blue-50 rounded-xl">
+        <div class="text-4xl mb-3">📍</div>
+        <h3 class="font-bold mb-2">42,000+ ZIP Codes</h3>
+        <p class="text-gray-600 text-sm">Complete coverage of every active US ZIP code with detailed demographic data.</p>
+      </div>
+      <div class="text-center p-6 bg-green-50 rounded-xl">
+        <div class="text-4xl mb-3">🆓</div>
+        <h3 class="font-bold mb-2">100% Free</h3>
+        <p class="text-gray-600 text-sm">No signup, no subscription, no hidden fees. ZIP code data should be free for everyone.</p>
+      </div>
+      <div class="text-center p-6 bg-purple-50 rounded-xl">
+        <div class="text-4xl mb-3">📊</div>
+        <h3 class="font-bold mb-2">Census-Based Data</h3>
+        <p class="text-gray-600 text-sm">Data sourced from the US Census Bureau and American Community Survey (ACS).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="max-w-4xl mx-auto px-4 py-12" id="faq">
+  <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+  <div class="space-y-4">
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        Where does your ZIP code data come from? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">Our data is sourced from the US Census Bureau's American Community Survey (ACS) 5-Year Estimates and other public federal datasets. We update annually as new data becomes available.</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        How accurate is the ZIP code data? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">The data reflects the most recent Census survey estimates, typically from 2022–2023 surveys. Actual current figures may vary slightly as populations and economics change.</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        What is median household income? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">Median household income is the middle value of all household incomes in a ZIP code — meaning half of households earn more and half earn less. It's a better measure than average because it's not skewed by very high earners.</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        Why do some ZIP codes show limited data? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">Some rural or low-population ZIP codes may have limited Census survey responses, resulting in less precise estimates. The Census suppresses data for very small populations to protect privacy.</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        Can I use this data for research or business purposes? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">Yes! The underlying Census data is public domain. Our aggregated display is free for personal, research, and business use. Please cite 'US Census Bureau / ZIP Stats Guide' when publishing.</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        How do I find my ZIP code? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">If you're unsure of your ZIP code, check any piece of mail delivered to your address, or search USPS.com for ZIP code lookup tools.</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        What is cost of living index? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">A cost of living index compares the relative expense of living in an area to the national average (index = 100). An index of 120 means living costs are 20% higher than average; 85 means 15% lower.</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+      <button class="w-full text-left p-5 font-semibold text-gray-800 flex justify-between items-center hover:bg-gray-50"
+        onclick="var p=this.nextElementSibling;p.classList.toggle('hidden');this.querySelector('.fa-icon').textContent=p.classList.contains('hidden')?'+':'−'">
+        How do I read median home value? <span class="fa-icon text-blue-500 text-xl font-bold ml-4">+</span>
+      </button>
+      <div class="hidden px-5 pb-5 text-gray-600 text-sm leading-relaxed">Median home value is the midpoint of all home values in a ZIP code — half of homes are worth more and half are worth less. It reflects owner-occupied housing and is based on Census self-reported estimates.</div>
+    </div></div>
+</div>
+
+<!-- AD BOTTOM -->
+<div class="max-w-6xl mx-auto px-4 pb-8"><div class="ad-placeholder">Advertisement</div></div>
+
+
+<footer class="bg-gray-900 text-gray-400 py-8 px-4">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <div>
+      <span class="text-white font-bold">ZIP Stats Guide</span>
+      <span class="ml-2 text-sm">— Free US ZIP Code Statistics</span>
+    </div>
+    <div class="text-sm text-center">Data sourced from US Census Bureau &amp; American Community Survey. For informational use only.</div>
+    <div class="text-sm">&copy; 2026 ZIP Stats Guide</div>
+  </div>
+</footer>
+
+<script>
+function goToZip() {
+  var v = document.getElementById('zip-input').value.trim();
+  var err = document.getElementById('zip-error');
+  if (!/^\d{5}$/.test(v)) { if(err) err.classList.remove('hidden'); return; }
+  if(err) err.classList.add('hidden');
+  window.location.href = '/zip/' + v + '.html';
+}
+</script>
+</body>
+</html>
